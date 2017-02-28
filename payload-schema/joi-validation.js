@@ -1,7 +1,7 @@
 'use strict';
 const joi = require('joi');
-var joiSchema = {
 
+const joiSchema = {
   registerStudent: joi
     .object()
     .keys({
@@ -21,6 +21,263 @@ var joiSchema = {
         .string()
         .required()
     }),
+
+  scheduleAppointment: joi
+    .object()
+    .keys({
+      studentEmailID: joi
+        .string()
+        .required(),
+      courseCode: joi
+        .string()
+        .required(),
+      examName: joi
+        .string()
+        .required(),
+      startDateLong: joi
+        .date()
+        .required(),
+      endDateLong: joi
+        .date()
+        .required(),
+      confirmationCode: joi
+        .string(),
+      voucherNumber: joi
+        .string(),
+      sessionID: joi
+        .string(),
+      keyLockNumber: joi
+        .string(),
+      notes: joi
+        .string(),
+      timeZone: joi
+        .string()
+        .required()
+    }),
+
+  deleteAppointment: joi
+    .object()
+    .keys({
+      studentEmailID: joi
+        .string()
+        .email()
+        .required(),
+      appointmentID: joi
+        .number()
+        .required()
+    }),
+
+  createExam: joi
+    .object()
+    .keys({
+      examName: joi.string()
+        .required(),
+      courseCode: joi
+        .number()
+        .required(),
+      type: joi
+        .string()
+        .required()
+        .valid('paper', 'online'),
+      numberOfPages: joi
+        .number(),
+      duration: joi
+        .number(),
+      costUSD: joi
+        .number().required(),
+      startDateLong: joi
+        .string()
+        .required(),
+      endDateLong: joi
+        .string()
+        .required(),
+      retakingLimit: joi
+        .number(),
+      numberOfStudents: joi
+        .number()
+        .required(),
+      additionalDetailsForProctor: joi
+        .string(),
+      alternateExamURL: joi
+        .string(),
+      alternateExamProcess: joi
+        .string(),
+      examPassword: joi
+        .string(),
+      professorName: joi
+        .string()
+        .required(),
+      professorPhone: joi
+        .string()
+        .required(),
+      professorEmail: joi
+        .string()
+        .email()
+        .required(),
+      enableEmailNotifications: joi
+        .string(),
+      notes: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      openTextBook: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      calculator: joi
+        .string()
+        .required(),
+      formulaSheets: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      dictionary: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      websites: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      blankPaper: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      bioBreak: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      additionalInfo: joi
+        .string(),
+      proctorList: joi
+        .array(),
+      externalExamID: joi
+        .string()
+
+    }),
+
+
+  editExam: joi
+    .object()
+    .keys({
+      examId: joi
+        .number()
+        .required(),
+      examName: joi.string()
+        .required(),
+      courseCode: joi
+        .number()
+        .required(),
+      type: joi
+        .string()
+        .required()
+        .valid('paper', 'online'),
+      numberOfPages: joi
+        .number(),
+      duration: joi
+        .number(),
+      costUSD: joi
+        .number().required(),
+      startDateLong: joi
+        .string()
+        .required(),
+      endDateLong: joi
+        .string()
+        .required(),
+      retakingLimit: joi
+        .number(),
+      numberOfStudents: joi
+        .number()
+        .required(),
+      additionalDetailsForProctor: joi
+        .string(),
+      alternateExamURL: joi
+        .string(),
+      alternateExamProcess: joi
+        .string(),
+      examPassword: joi
+        .string(),
+      professorName: joi
+        .string()
+        .required(),
+      professorPhone: joi
+        .string()
+        .required(),
+      professorEmail: joi
+        .string()
+        .email()
+        .required(),
+      enableEmailNotifications: joi
+        .string(),
+      notes: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      openTextBook: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      calculator: joi
+        .string()
+        .required(),
+      formulaSheets: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      dictionary: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      websites: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      blankPaper: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      bioBreak: joi
+        .string()
+        .valid('yes', 'no')
+        .required(),
+      additionalInfo: joi
+        .string(),
+      proctorList: joi
+        .array(),
+      externalExamID: joi
+        .string()
+
+    }),
+
+  rescheduleAppointment: joi
+    .object()
+    .keys({
+      appointmentID: joi
+        .number()
+        .required(),
+      studentEmailID: joi
+        .string()
+        .email()
+        .required(),
+      startDateLong: joi
+        .date()
+        .required(),
+      endDateLong: joi
+        .date()
+        .required()
+    }),
+
+  getExamCost: joi
+    .object()
+    .keys({
+      courseCode: joi
+        .string()
+        .required(),
+      examName: joi
+        .string()
+        .required()
+    }),
+
   checkTimeSlotAvailability: joi
     .object()
     .keys({
