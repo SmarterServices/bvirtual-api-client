@@ -25,8 +25,8 @@ describe('Testing B Virtual API client', function () {
         })
     });
   });
- 
-  
+
+
   describe('Testing scheduleAppointment method', function () {
 
     it('Should take valid payload data and return 200 response code', function (done){
@@ -102,7 +102,7 @@ describe('Testing B Virtual API client', function () {
 
     });
   });
-  
+
   describe('Testing deleteAppointment endpoint', function () {
     it('Should take valid studentEmailID, appointmentId and return 200 status code', function (done){
       let client = new BVirtualClient({url, token: correctToken});
@@ -436,6 +436,182 @@ describe('Testing correct and wrong token', function correctAndWrongToken() {
         .catch(function (error) {
           return expect(error).to.equal(null);
         });
+    });
+
+  });
+
+  describe('Testing getAvailableSlots method', function () {
+
+    it('Should take valid payload data and return 200 response code', function (done){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      client
+        .getAvailableSlots(testData.getAvailableSlots.payload.valid)
+        .then(function (response) {
+          expect(response.statusCode).to.equal(200);
+          expect(response.availableTimeSlotsListVo).to.be.an('array');
+          done();
+        })
+        .catch(done);
+
+    });
+
+    it('Should throw error if any required properties are not provided', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAvailableSlots(testData.getAvailableSlots.payload.missingCourseCode)
+        .catch(function (ex) {
+          return expect(ex).to.equal('"courseCode" is required');
+        })
+
+    });
+
+
+    it('Should reject the promise with 351 response code if time slot is not available', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAvailableSlots(testData.getAvailableSlots.payload.unavailableTimeSlot)
+        .catch(function (error) {
+          return expect(error.statusCode).to.equal(351);
+        })
+
+    });
+  });
+
+  describe('Testing getExamDetails method', function () {
+
+    it('Should take valid payload data and return 200 response code', function (done){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      client
+        .getExamDetails(testData.getExamDetails.payload.valid)
+        .then(function (response) {
+          expect(response.statusCode).to.equal(200);
+          done();
+        })
+        .catch(done);
+
+    });
+
+    it('Should throw error if any required properties are not provided', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getExamDetails(testData.getExamDetails.payload.missingCourseCode)
+        .catch(function (ex) {
+          return expect(ex).to.equal('"courseCode" is required');
+        })
+
+    });
+
+
+    it('Should reject the promise with 351 response code if exam is not available', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getExamDetails(testData.getExamDetails.payload.examDoesNotExist)
+        .catch(function (error) {
+          return expect(error.statusCode).to.equal(351);
+        })
+
+    });
+  });
+
+
+  describe('Testing getAvailableSlotsWithoutProctorCount method', function () {
+
+    it('Should take valid payload data and return 200 response code', function (done){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      client
+        .getAvailableSlotsWithoutProctorCount(testData.getAvailableSlotsWithoutProctorCount.payload.valid)
+        .then(function (response) {
+          expect(response.statusCode).to.equal(200);
+          expect(response.availableTimeSlotsListVo).to.be.an('array');
+          done();
+        })
+        .catch(done);
+
+    });
+
+    it('Should throw error if any required properties are not provided', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAvailableSlotsWithoutProctorCount(testData.getAvailableSlotsWithoutProctorCount.payload.missingCourseCode)
+        .catch(function (ex) {
+          return expect(ex).to.equal('"courseCode" is required');
+        })
+
+    });
+
+
+    it('Should reject the promise with 351 response code if time slot is not available', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAvailableSlotsWithoutProctorCount(testData.getAvailableSlotsWithoutProctorCount.payload.unavailableTimeSlot)
+        .catch(function (error) {
+          return expect(error.statusCode).to.equal(351);
+        })
+
+    });
+  });
+
+
+  describe('Testing startExam method', function () {
+    it('Should take valid payload and create an exam with 200 response', function (done){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      client
+        .startExam(testData.startExam.payload.valid)
+        .then(function (data) {
+          expect(data.statusCode).to.equal(200);
+          done();
+        })
+        .catch(done)
+
+    });
+
+
+    it('Should reject if any required fields are missing ', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .startExam(testData.startExam.payload.missingAppointID)
+        .catch(error => expect(error).to.equal('"appointmentID" is required'));
+
+    });
+
+  });
+
+
+  describe('Testing onDemandStartExam method', function () {
+    it('Should take valid payload and create an exam with 200 response', function (done){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      client
+        .onDemandStartExam(testData.onDemandStartExam.payload.valid)
+        .then(function (data) {
+          expect(data.statusCode).to.equal(200);
+          done();
+        })
+        .catch(done)
+
+    });
+
+
+    it('Should reject if any required fields are missing ', function (){
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .onDemandStartExam(testData.onDemandStartExam.payload.missingStudentEmail)
+        .catch(function(error){
+          return expect(error).to.equal('"studentEmailID" is required')
+        });
+
     });
 
   });

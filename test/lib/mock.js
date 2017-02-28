@@ -101,6 +101,41 @@ const mockRequests = function mock(url) {
     .get('/rest/getAllProctorsForInstitute')
     .reply(200, testData.getAllProctorsForInstitute.response.valid);
 
+  nock(url, correctTokenHeader)
+    .post('/rest/getAvailableSlots', testData.getAvailableSlots.payload.valid)
+    .reply(200, testData.getAvailableSlots.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/getAvailableSlots', testData.getAvailableSlots.payload.unavailableTimeSlot)
+    .reply(351, testData.getAvailableSlots.response.unavailableTimeSlot);
+
+
+  nock(url, correctTokenHeader)
+    .post('/rest/getExamDetails', testData.getExamDetails.payload.valid)
+    .reply(200, testData.getExamDetails.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/getExamDetails', testData.getExamDetails.payload.examDoesNotExist)
+    .reply(351, testData.getExamDetails.response.examDoesNotExist);
+
+
+  nock(url, correctTokenHeader)
+    .post('/rest/getAvailableSlotsWithoutProctorCount', testData.getAvailableSlotsWithoutProctorCount.payload.valid)
+    .reply(200, testData.getAvailableSlotsWithoutProctorCount.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/getAvailableSlotsWithoutProctorCount', testData.getAvailableSlotsWithoutProctorCount.payload.unavailableTimeSlot)
+    .reply(351, testData.getAvailableSlotsWithoutProctorCount.response.unavailableTimeSlot);
+
+
+  nock(url, correctTokenHeader)
+    .post('/rest/startExam', testData.startExam.payload.valid)
+    .reply(200, testData.startExam.response.valid);
+
+
+  nock(url, correctTokenHeader)
+    .post('/rest/onDemandStartExam', testData.onDemandStartExam.payload.valid)
+    .reply(200, testData.onDemandStartExam.response.valid);
 
 };
 

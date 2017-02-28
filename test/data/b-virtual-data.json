@@ -1,5 +1,4 @@
 {
-
   "scheduleAppointment": {
     "payload": {
       "valid": {
@@ -303,6 +302,12 @@
         "examName": "Cloud Computing - Foundation Certificate",
         "startDateLong": "1394024400000",
         "endDateLong": "1394026200000"
+      },
+      "unavailableTimeSlot": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
       }
     },
     "response": {
@@ -310,10 +315,13 @@
         "statusCode": 200,
         "statusMessage": "Slot available",
         "availableTimeSlotsListVo": []
+      },
+      "unavailableTimeSlot": {
+        "statusCode": 351,
+        "statusMessage": "Time slot not available!"
       }
     }
   },
-
   "registerStudent": {
     "payload": {
       "valid": {
@@ -350,7 +358,6 @@
       }
     }
   },
-
   "checkTimeSlotAvailability": {
     "payload": {
       "valid": {
@@ -427,6 +434,132 @@
             "emailId": "jack@gmail.com"
           }
         ]
+      }
+    }
+  },
+  "getExamDetails": {
+    "payload": {
+      "valid": {
+        "name": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68"
+      },
+      "examDoesNotExist": {
+        "name": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00"
+      },
+      "missingCourseCode": {
+        "name": "Cloud Computing - Foundation Certificate"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Exam details",
+        "examID": 1234,
+        "instituteID": 121212,
+        "institute": "Test institute",
+        "name": "Exam name",
+        "courseCode": "1201212",
+        "professorName": "Test Professor",
+        "professorContact": "0123456789",
+        "professorEmail": "test@email.com",
+        "type": "online",
+        "examPassword": "abc1234",
+        "enableEmail": "yes",
+        "archive": "yes",
+        "deleted": "no",
+        "duration": "1232321324",
+        "openTextbook": "yes",
+        "calculator": "normal",
+        "formulaSheet": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "electronicResources": "yes",
+        "other": "no"
+      },
+
+      "examDoesNotExist": {
+        "statusCode": 340,
+        "statusMessage": "Exam does not belong to institute!"
+      }
+    }
+  },
+
+  "getAvailableSlotsWithoutProctorCount": {
+    "payload": {
+      "valid": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "missingCourseCode": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "unavailableTimeSlot": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Slot available",
+        "availableTimeSlotsListVo": []
+      },
+      "unavailableTimeSlot": {
+        "statusCode": 351,
+        "statusMessage": "Time slot not available!"
+      }
+    }
+  },
+
+  "startExam": {
+    "payload": {
+      "valid": {
+        "appointmentID":"1234"
+      },
+
+      "missingAppointID": {}
+
+    },
+    "response": {
+      "valid": {
+        "statusCode" : 200,
+        "statusMessage" : "Exam started!",
+        "meetingURL" : "http://test.com",
+        "bomgarURL" : "http://test.com"
+      }
+    }
+  },
+
+
+  "onDemandStartExam": {
+    "payload": {
+      "valid": {
+        "examCourseCode": "1212",
+        "studentEmailID":"test@test.com",
+        "examName":"Exam Name",
+        "sessionID" : "123"
+      },
+
+      "missingStudentEmail": {
+        "courseCode":"Course Code",
+        "examName":"Exam Name",
+        "sessionID" : "123"
+      }
+
+    },
+    "response": {
+      "valid": {
+        "statusCode" : 200,
+        "statusMessage" : "Exam will be started on demand!",
+        "meetingURL" : "http://test.com",
+        "bomgarURL" : "http://test.com"
       }
     }
   }
