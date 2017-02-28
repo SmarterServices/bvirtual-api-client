@@ -67,6 +67,41 @@ const mockRequests = function mock(url) {
     .post('/rest/getAvailableSlots', testData.getExamCost.payload.valid)
     .reply(200, testData.getAvailableSlots.response.valid);
 
+
+  nock(url, correctTokenHeader)
+    .get('/rest/getAllProctorsForInstitute')
+    .reply(200, testData.getAllProctorsForInstitute.response.valid);
+
+  nock(url, wrongTokenHeader)
+    .get('/rest/getAllProctorsForInstitute')
+    .reply(307, {working: false, message: 'Incorrect password !'});
+
+  nock(url, correctTokenHeader)
+    .post('/rest/registerStudent', testData.registerStudent.payload.valid)
+    .reply(200, testData.registerStudent.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/checkTimeSlotAvailability', testData.checkTimeSlotAvailability.payload.valid)
+    .reply(200, testData.checkTimeSlotAvailability.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/checkTimeSlotAvailability', testData.checkTimeSlotAvailability.payload.valid)
+    .reply(351, testData.checkTimeSlotAvailability.response.unavailableTimeSlot);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/userExists', testData.userExists.payload.valid)
+    .reply(200, testData.userExists.response.valid);
+
+  nock(url, correctTokenHeader)
+    .post('/rest/userExists', testData.userExists.payload.invalidUser)
+    .reply(348, testData.userExists.response.userDoesNotExist);
+
+
+  nock(url, correctTokenHeader)
+    .get('/rest/getAllProctorsForInstitute')
+    .reply(200, testData.getAllProctorsForInstitute.response.valid);
+
+
 };
 
 module.exports = mockRequests;

@@ -25,7 +25,7 @@ describe('Testing B Virtual API client', function () {
         })
     });
   });
-  
+ 
   
   describe('Testing scheduleAppointment method', function () {
 
@@ -253,6 +253,191 @@ describe('Testing B Virtual API client', function () {
         })
 
     });
+  });
+
+describe('Testing correct and wrong token', function correctAndWrongToken() {
+    it('should work correctly because of correct token', function goodToken() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAllProctorsForInstitute()
+        .then(function (data) {
+          return expect(data.statusCode).to.be.equal(200);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal(null);
+        });
+    });
+
+    it('should fail because of wrong token', function badToken() {
+
+      let client = new BVirtualClient({url, token: wrongToken});
+
+      return client
+        .getAllProctorsForInstitute()
+        .then(function (data) {
+          return expect(data).to.equal(null);
+
+        })
+        .catch(function (error) {
+
+          return expect(error.statusCode).to.be.equal(307);
+        });
+    });
+  });
+
+  describe('Testing registerStudent method', function registerStudent() {
+    it('Should work correctly', function correctRegisterStudent() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .registerStudent(testData.registerStudent.payload.valid)
+        .then(function (data) {
+          return expect(data.isRegistered).to.equal(true);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal(null);
+        });
+    });
+
+    it('Should fail because of missing required field (firstName)', function missingRequiredRegisterStudentField() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .registerStudent(testData.registerStudent.payload.missingRequiredField)
+        .then(function (data) {
+          console.log(data);
+          return expect(data).to.equal(null);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal('"firstName" is required');
+        });
+    });
+
+    it('Should fail because of invalid emailID', function invalidMailIDRegisterStudent() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .registerStudent(testData.registerStudent.payload.invalidMailID)
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal('"loginID" must be a valid email');
+        });
+    });
+
+  });
+
+  describe('Testing checkTimeSlotAvailability method', function checkTimeSlotAvailability() {
+    it('Should work correctly', function correctResponse() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .checkTimeSlotAvailability(testData.checkTimeSlotAvailability.payload.valid)
+        .then(function (data) {
+          return expect(data.statusCode).to.equal(200);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal(null);
+        });
+    });
+    it('Should fail because of unavailable time', function unavailableTime() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .checkTimeSlotAvailability(testData.checkTimeSlotAvailability.payload.unavailableTimeSlot)
+        .then(function (data) {
+          return expect(data).to.equal(null);
+        })
+        .catch(function (error) {
+          return expect(error.statusCode).to.equal(351);
+
+        });
+    });
+    it('Should fail because of missing required field(examName)', function missingRequiredField() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .checkTimeSlotAvailability(testData.checkTimeSlotAvailability.payload.missingRequiredField)
+        .then(function (data) {
+          console.log(data);
+          return expect(data).to.equal(null);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal('"examName" is required');
+        });
+    });
+    it('Should fail because of invalid date format', function invalidDateFormat() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .checkTimeSlotAvailability(testData.checkTimeSlotAvailability.payload.invalidDateFormat)
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal('"endDateLong" must be a valid timestamp or number of milliseconds');
+        });
+    });
+
+  });
+
+  describe('Testing userExists method', function userExists() {
+    it('Should work correctly', function correctResponse() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .userExists(testData.userExists.payload.valid)
+        .then(function (data) {
+          return expect(data.statusCode).to.equal(200);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal(null);
+        });
+    });
+    it('Should fail because user does not exist', function userDoesNotExist() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+       return client
+        .userExists(testData.userExists.payload.invalidUser)
+        .then(function (data) {
+          console.log(data);
+          return expect(data).to.equal(null);
+        })
+        .catch(function (error) {
+          return expect(error.statusCode).to.equal(348);
+        });
+    });
+
+  });
+
+
+  describe('Testing getAllProctorsForInstitute method', function getAllProctorsForInstitute() {
+    it('should work correctly', function correctGetAllProctorsForInstitute() {
+
+      let client = new BVirtualClient({url, token: correctToken});
+
+      return client
+        .getAllProctorsForInstitute()
+        .then(function (data) {
+          return expect(data.statusCode).to.be.equal(200);
+        })
+        .catch(function (error) {
+          return expect(error).to.equal(null);
+        });
+    });
+
   });
 
 });
