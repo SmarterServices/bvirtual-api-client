@@ -1,13 +1,13 @@
 'use strict';
 let BVirtualClient = require('./index.js');
-let client = new BVirtualClient({url: 'https://appt-onlineproctornow-com-fclj751c0rwy.runscope.net', token: ''});
+let client = new BVirtualClient({url: 'https://schedulerstaging.onlineproctornow.com', token: 'U21hcnRlclNlcnZpY2VzOjQyNjVhZTI2YzZlOWZlMjBkMmQ1YTFmYmU4NWU1ODQy'});
 
 var payload = {
-"startDateLong": "1493766000000",
-"examName": "Austin Peay State University - Test #3 (MC and Interpretation)",
-"endDateLong": "1493788500000",
-"courseCode": "227C1FC1-FC4F-419F-97A4-C3F41A75A8DF"
-};
+    "startDateLong":"1493769600000",
+    "examName":"Sample Exam",
+    "endDateLong":"1493856000000",
+    "courseCode":"sample"
+  };
 
 client
   .getAvailableSlots(payload)
