@@ -394,6 +394,36 @@ const joiSchema = {
         .string(),
       notes: joi
         .string()
+    }),
+  getAvailableSlotMatrix: joi
+    .object()
+    .keys({
+      examName: joi
+        .string()
+        .required(),
+      courseCode: joi
+        .string()
+        .required(),
+      startDate: joi
+        .date()
+        .timestamp()
+        .required(),
+      endDate: joi
+        .date()
+        .timestamp()
+        .required(),
+      duration: joi
+        .number()
+        .integer()
+        .min(0)
+        .options({convert: false})
+        .required(),
+      schedulingBuffer: joi
+        .number()
+        .integer()
+        .min(0)
+        .options({convert: false})
+        .required()
     })
 
 };
