@@ -8,7 +8,7 @@ let client = new BVirtualClient({
 
 let payload = {
   startDate: '1493769600000',
-  endDate: '1494028800000',
+  endDate: '1494288000000',
   duration: 120,
   schedulingBuffer: 30,
   examName: 'Sample Exam',
