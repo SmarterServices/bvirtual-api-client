@@ -14,8 +14,8 @@ let table = new CliTable({
 });
 
 let payload = {
-  startDate: '1493769600000',
-  endDate: '1494288000000',
+  startDate: '1494115200000',
+  endDate: '1494892800000',
   duration: 120,
   schedulingBuffer: 30,
   examName: 'Sample Exam',
