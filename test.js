@@ -6,7 +6,6 @@ let client = new BVirtualClient({
   token: 'U21hcnRlclNlcnZpY2VzOjQyNjVhZTI2YzZlOWZlMjBkMmQ1YTFmYmU4NWU1ODQy'
 });
 const CliTable = require('cli-table');
-const MatrixFormatter = require('./lib/matrix-formatter');
 
 // create table to display time slots
 let table = new CliTable({
@@ -25,10 +24,8 @@ let payload = {
 
 client.getAvailableSlotMatrix(payload)
   .then(matrix=> {
-    let matrixFormatter = new MatrixFormatter(matrix);
-    let formattedMatrix = matrixFormatter.format();
-    for (let date in formattedMatrix) {
-      let timeSlots = formattedMatrix[date];
+    for (let date in matrix) {
+      let timeSlots = matrix[date];
       let tableRow = [];
       for (let slot in timeSlots) {
         tableRow.push(timeSlots[slot].length);
