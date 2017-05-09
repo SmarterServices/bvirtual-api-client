@@ -14,20 +14,23 @@ let table = new CliTable({
 });
 
 let payload = {
-  startDate: '1494115200000',
-  endDate: '1494892800000',
+  startDate: '1494460800000',
+  endDate: '1495497614000',
   duration: 120,
   schedulingBuffer: 30,
   examName: 'Sample Exam',
-  courseCode: 'sample'
+  courseCode: 'sample',
+  tzOffset: 3.5
 };
 
 client.getAvailableSlotMatrix(payload)
   .then(matrix=> {
-    for (let date of matrix) {
+    console.log(JSON.stringify(matrix, null, 2));
+    for (let date in matrix) {
+      let timeSlots = matrix[date];
       let tableRow = [];
-      for (let slot of date) {
-        tableRow.push(slot.length);
+      for (let slot in timeSlots) {
+        tableRow.push(timeSlots[slot].length);
       }
       table.push(tableRow);
     }

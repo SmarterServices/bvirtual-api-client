@@ -423,6 +423,10 @@ const joiSchema = {
         .integer()
         .min(0)
         .options({convert: false})
+        .required(),
+      tzOffset: joi
+        .number()
+        .options({convert: false})
         .required()
     })
 
