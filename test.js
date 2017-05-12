@@ -14,15 +14,15 @@ let table = new CliTable({
 });
 
 let payload = {
-  startDate: '1494460800000',
-  endDate: '1495497614000',
+  startDate: '1494633600000',
+  endDate: '1526169600000',
   duration: 120,
   schedulingBuffer: 30,
   examName: 'Sample Exam',
   courseCode: 'sample',
   tzOffset: 3.5
 };
-
+console.time('Total Time:');
 client.getAvailableSlotMatrix(payload)
   .then(matrix=> {
     console.log(JSON.stringify(matrix, null, 2));
@@ -35,6 +35,7 @@ client.getAvailableSlotMatrix(payload)
       table.push(tableRow);
     }
     console.log(table.toString());
+    console.timeEnd('Total Time:');
   })
   .catch(error=> {
     console.error(error);
