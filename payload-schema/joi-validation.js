@@ -73,7 +73,7 @@ const joiSchema = {
       examName: joi.string()
         .required(),
       courseCode: joi
-        .number()
+        .string()
         .required(),
       type: joi
         .string()
@@ -166,7 +166,7 @@ const joiSchema = {
       examName: joi.string()
         .required(),
       courseCode: joi
-        .number()
+        .string()
         .required(),
       type: joi
         .string()
