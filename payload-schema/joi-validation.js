@@ -16,9 +16,11 @@ const joiSchema = {
         .string()
         .required(),
       phoneNo: joi
-        .string(),
+        .string()
+        .required(),
       password: joi
         .string()
+        .min(6)
         .required()
     }),
 
