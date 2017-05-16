@@ -1,0 +1,35 @@
+{
+  "name": "bvirtual-api-client",
+  "version": "0.0.2",
+  "description": "This lib is used as a wrapper around api calls to B Virtual",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmarterServices/bvirtual-api-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmarterServices/bvirtual-api-client/issues"
+  },
+  "homepage": "https://github.com/SmarterServices/bvirtual-api-client#readme",
+  "dependencies": {
+    "joi": "latest",
+    "lodash.get": "^4.4.2",
+    "moment": "^2.18.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "chai": "latest",
+    "cli-table": "^0.3.1",
+    "gulp": "latest",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-jshint": "latest",
+    "gulp-mocha": "latest",
+    "nock": "^9.0.7"
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "scheduleAppointment": {
+    "payload": {
+      "valid": {
+        "examName": "ITIL Intermediate - Service Design",
+        "courseCode": "ABC123",
+        "studentEmailID": "test@gmail.com",
+        "startDateLong": "1394028000000",
+        "endDateLong": "1394029800000",
+        "voucherNumber": "test voucherNumber",
+        "sessionID": "test sessionID",
+        "keyLockNumber": "test keyLockNumber",
+        "timeZone": "America/New_York"
+      },
+      "requiredNotProvided": {
+        "examName": "ITIL Intermediate - Service Design",
+        "courseCode": "ABC123",
+        "startDateLong": "1394028000000",
+        "endDateLong": "1394029800000",
+        "voucherNumber": "test voucherNumber",
+        "sessionID": "test sessionID",
+        "keyLockNumber": "test keyLockNumber",
+        "timeZone": "America/New_York"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Scheduling successful",
+        "appointmentID": 12345,
+        "additionalResources": "yes",
+        "bioBreak": "yes",
+        "openTextbook": "no",
+        "dictionary": "yes",
+        "blankPaper": "yes",
+        "formulaSheet": "no",
+        "notes": "yes",
+        "calculator": "no"
+      }
+    }
+  },
+  "getAppointmentDetails": {
+    "payload": {
+      "valid": {
+        "appointmentId": 12345
+      },
+      "invalid": {
+        "appointmentId": 4568
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Scheduling successful",
+        "appointmentID": 12345,
+        "additionalResources": "yes",
+        "status": "active",
+        "bioBreak": "yes",
+        "openTextbook": "no",
+        "dictionary": "yes",
+        "blankPaper": "yes",
+        "formulaSheet": "no",
+        "notes": "yes",
+        "calculator": "no"
+      },
+      "error": {
+        "statusCode": 301,
+        "statusMessage": "Error while fetching appointment details"
+      }
+    }
+  },
+  "deleteAppointment": {
+    "payload": {
+      "valid": {
+        "studentEmailID": "test@gmail.com",
+        "appointmentID": "30638"
+      },
+      "invalid": {
+        "studentEmailID": "invalidEmail",
+        "appointmentID": 30638
+      },
+      "invalidAppointmentId": {
+        "studentEmailID": "test@gmail.com",
+        "appointmentID": 1111111
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Appointment details deleted!"
+      },
+      "invalidAppointmentId": {
+        "statusCode": 337,
+        "statusMessage": "Appointment has already been deleted!"
+      }
+    }
+  },
+  "createExam": {
+    "payload": {
+      "valid": {
+        "examName": "Test Exam",
+        "courseCode": "01",
+        "type": "paper",
+        "numberOfPages": "1",
+        "duration": "1",
+        "costUSD": "200",
+        "startDateLong": "1357131600000",
+        "endDateLong": "1357133400000",
+        "retakingLimit": "1",
+        "numberOfStudents": "2",
+        "additionalDetailsForProctor": "additional details",
+        "alternateExamURL": "www.altexam.com",
+        "alternateExamProcess": "alt process",
+        "examPassword": "password",
+        "professorName": "Mr Smith",
+        "professorPhone": "12345678999",
+        "professorEmail": "smith@gmail.com",
+        "enableEmailNotifications": "no",
+        "notes": "yes",
+        "openTextBook": "yes",
+        "calculator": "Any",
+        "formulaSheets": "yes",
+        "dictionary": "yes",
+        "websites": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "proctorList": [
+          "proctor1@gmail.com",
+          "proctor2@yahoo.com"
+        ],
+        "externalExamID": "test123"
+      },
+      "missingName": {
+        "courseCode": "01",
+        "type": "paper",
+        "numberOfPages": "1",
+        "duration": "1",
+        "costUSD": "200",
+        "startDateLong": "1357131600000",
+        "endDateLong": "1357133400000",
+        "retakingLimit": "1",
+        "numberOfStudents": "2",
+        "additionalDetailsForProctor": "additional details",
+        "alternateExamURL": "www.altexam.com",
+        "alternateExamProcess": "alt process",
+        "examPassword": "password",
+        "professorName": "Mr Smith",
+        "professorPhone": "12345678999",
+        "professorEmail": "smith@gmail.com",
+        "enableEmailNotifications": "no",
+        "notes": "yes",
+        "openTextBook": "yes",
+        "calculator": "Any",
+        "formulaSheets": "yes",
+        "dictionary": "yes",
+        "websites": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "proctorList": [
+          "proctor1@gmail.com",
+          "proctor2@yahoo.com"
+        ],
+        "externalExamID": "test123"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Exam created!",
+        "isCreated": true,
+        "examID": 1234
+      }
+    }
+  },
+  "editExam": {
+    "payload": {
+      "valid": {
+        "examId": 1234,
+        "examName": "Test Exam",
+        "courseCode": "01",
+        "type": "paper",
+        "numberOfPages": "1",
+        "duration": "1",
+        "costUSD": "200",
+        "startDateLong": "1357131600000",
+        "endDateLong": "1357133400000",
+        "retakingLimit": "1",
+        "numberOfStudents": "2",
+        "additionalDetailsForProctor": "additional details",
+        "alternateExamURL": "www.altexam.com",
+        "alternateExamProcess": "alt process",
+        "examPassword": "password",
+        "professorName": "Mr Smith",
+        "professorPhone": "12345678999",
+        "professorEmail": "smith@gmail.com",
+        "enableEmailNotifications": "no",
+        "notes": "yes",
+        "openTextBook": "yes",
+        "calculator": "Any",
+        "formulaSheets": "yes",
+        "dictionary": "yes",
+        "websites": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "proctorList": [
+          "proctor1@gmail.com",
+          "proctor2@yahoo.com"
+        ],
+        "externalExamID": "test123"
+      },
+      "missingId": {
+        "examName": "Test Exam",
+        "courseCode": "01",
+        "type": "paper",
+        "numberOfPages": "1",
+        "duration": "1",
+        "costUSD": "200",
+        "startDateLong": "1357131600000",
+        "endDateLong": "1357133400000",
+        "retakingLimit": "1",
+        "numberOfStudents": "2",
+        "additionalDetailsForProctor": "additional details",
+        "alternateExamURL": "www.altexam.com",
+        "alternateExamProcess": "alt process",
+        "examPassword": "password",
+        "professorName": "Mr Smith",
+        "professorPhone": "12345678999",
+        "professorEmail": "smith@gmail.com",
+        "enableEmailNotifications": "no",
+        "notes": "yes",
+        "openTextBook": "yes",
+        "calculator": "Any",
+        "formulaSheets": "yes",
+        "dictionary": "yes",
+        "websites": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "proctorList": [
+          "proctor1@gmail.com",
+          "proctor2@yahoo.com"
+        ],
+        "externalExamID": "test123"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Exam created!",
+        "isEdited": true,
+        "examID": 1234
+      }
+    }
+  },
+  "rescheduleAppointment": {
+    "payload": {
+      "valid": {
+        "appointmentID": 100318,
+        "startDateLong": "1394028000000",
+        "endDateLong": "1394029800000",
+        "studentEmailID": "abc@abc.com"
+      },
+      "requiredNotProvided": {
+        "startDateLong": "1394028000000",
+        "endDateLong": "1394029800000",
+        "studentEmailID": "abc@abc.com"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Rescheduling successful"
+      }
+    }
+  },
+  "getExamCost": {
+    "payload": {
+      "valid": {
+        "courseCode": "Rest test Exam",
+        "examName": "Test_Rest_001"
+      },
+      "missingCourseCode": {
+        "examName": "Test_Rest_001"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Success",
+        "cost": 100
+      }
+    }
+  },
+  "getAvailableSlots": {
+    "payload": {
+      "valid": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "missingCourseCode": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "unavailableTimeSlot": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Slot available",
+        "availableTimeSlotsListVo": []
+      },
+      "unavailableTimeSlot": {
+        "statusCode": 351,
+        "statusMessage": "Time slot not available!"
+      }
+    }
+  },
+  "registerStudent": {
+    "payload": {
+      "valid": {
+        "loginID": "test@gmail.com",
+        "firstName": "Rest",
+        "lastName": "Student",
+        "phoneNo": "7657309850",
+        "password": "pwd"
+      },
+      "missingRequiredField": {
+        "loginID": "test@gmail.com",
+        "lastName": "Student",
+        "phoneNo": "7657309850",
+        "password": "pwd"
+      },
+      "invalidMailID": {
+        "loginID": "testgmail.com",
+        "firstName": "Rest",
+        "lastName": "Student",
+        "phoneNo": "7657309850",
+        "password": "pwd"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Successful Registration",
+        "loginID": "test@gmail.com",
+        "firstName": "Rest",
+        "lastName": "Student",
+        "phoneNo": "7657309850",
+        "password": "pwd",
+        "isRegistered": true
+      }
+    }
+  },
+  "checkTimeSlotAvailability": {
+    "payload": {
+      "valid": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "unavailableTimeSlot": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "missingRequiredField": {
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "invalidDateFormat": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1-1-2017"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "List of available slots"
+      },
+      "unavailableTimeSlot": {
+        "statusCode": 351,
+        "statusMessage": "Error - Time slot not available!"
+      }
+    }
+  },
+  "userExists": {
+    "payload": {
+      "valid": {
+        "userEmailID": "test@gmail.com"
+      },
+      "invalidUser": {
+        "userEmailID": "wrong@gmail.com"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "use Exists in the system",
+        "userExists": true
+      },
+      "userDoesNotExist": {
+        "statusCode": 348,
+        "statusMessage": "User does not exist!",
+        "userExists": false
+      }
+    }
+  },
+  "getAllProctorsForInstitute": {
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Request completed successfully!",
+        "proctorList": [
+          {
+            "firstName": "John",
+            "lastName": "Smith",
+            "emailId": "john@gmail.com"
+          },
+          {
+            "firstName": "Jack",
+            "lastName": "Stone",
+            "emailId": "jack@gmail.com"
+          }
+        ]
+      }
+    }
+  },
+  "getExamDetails": {
+    "payload": {
+      "valid": {
+        "name": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68"
+      },
+      "examDoesNotExist": {
+        "name": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00"
+      },
+      "missingCourseCode": {
+        "name": "Cloud Computing - Foundation Certificate"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Exam details",
+        "examID": 1234,
+        "instituteID": 121212,
+        "institute": "Test institute",
+        "name": "Exam name",
+        "courseCode": "1201212",
+        "professorName": "Test Professor",
+        "professorContact": "0123456789",
+        "professorEmail": "test@email.com",
+        "type": "online",
+        "examPassword": "abc1234",
+        "enableEmail": "yes",
+        "archive": "yes",
+        "deleted": "no",
+        "duration": "1232321324",
+        "openTextbook": "yes",
+        "calculator": "normal",
+        "formulaSheet": "yes",
+        "blankPaper": "yes",
+        "bioBreak": "yes",
+        "electronicResources": "yes",
+        "other": "no"
+      },
+
+      "examDoesNotExist": {
+        "statusCode": 340,
+        "statusMessage": "Exam does not belong to institute!"
+      }
+    }
+  },
+
+  "getAvailableSlotsWithoutProctorCount": {
+    "payload": {
+      "valid": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "68",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "missingCourseCode": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      },
+      "unavailableTimeSlot": {
+        "examName": "Cloud Computing - Foundation Certificate",
+        "courseCode": "00",
+        "startDateLong": "1394024400000",
+        "endDateLong": "1394026200000"
+      }
+    },
+    "response": {
+      "valid": {
+        "statusCode": 200,
+        "statusMessage": "Slot available",
+        "availableTimeSlotsListVo": []
+      },
+      "unavailableTimeSlot": {
+        "statusCode": 351,
+        "statusMessage": "Time slot not available!"
+      }
+    }
+  },
+
+  "startExam": {
+    "payload": {
+      "valid": {
+        "appointmentID":"1234"
+      },
+
+      "missingAppointID": {}
+
+    },
+    "response": {
+      "valid": {
+        "statusCode" : 200,
+        "statusMessage" : "Exam started!",
+        "meetingURL" : "http://test.com",
+        "bomgarURL" : "http://test.com"
+      }
+    }
+  },
+
+
+  "onDemandStartExam": {
+    "payload": {
+      "valid": {
+        "examCourseCode": "1212",
+        "studentEmailID":"test@test.com",
+        "examName":"Exam Name",
+        "sessionID" : "123"
+      },
+
+      "missingStudentEmail": {
+        "courseCode":"Course Code",
+        "examName":"Exam Name",
+        "sessionID" : "123"
+      }
+
+    },
+    "response": {
+      "valid": {
+        "statusCode" : 200,
+        "statusMessage" : "Exam will be started on demand!",
+        "meetingURL" : "http://test.com",
+        "bomgarURL" : "http://test.com"
+      }
+    }
+  }
+}
