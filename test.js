@@ -14,13 +14,13 @@ let table = new CliTable({
 });
 
 let payload = {
-  startDate: '1494633600000',
-  endDate: '1526169600000',
-  duration: 120,
-  schedulingBuffer: 30,
-  examName: 'Sample Exam',
-  courseCode: 'sample',
-  tzOffset: 3.5
+  "courseCode": "EXb33a65f3c2e34f0d98ad410944f3b8df",
+  "examName": "Jason Sandbox - Final Exam",
+  "duration": 90,
+  "startDate": "1496116800000",
+  "endDate": "1496894400000",
+  "schedulingBuffer": 30,
+  "tzOffset": -4
 };
 console.time('Total Time:');
 client.getAvailableSlotMatrix(payload)
