@@ -26,8 +26,8 @@ console.time('Total Time:');
 client.getAvailableSlotMatrix(payload)
   .then(matrix=> {
     console.log(JSON.stringify(matrix, null, 2));
-    for (let date in matrix) {
-      let timeSlots = matrix[date];
+    for (let date of matrix) {
+      let timeSlots = date.windows;
       let tableRow = [];
       for (let slot in timeSlots) {
         tableRow.push(timeSlots[slot].length);
