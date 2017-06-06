@@ -430,6 +430,7 @@ const joiSchema = {
         .number()
         .options({convert: false})
         .required()
+        .description('Time zone offset in hours')
     })
 
 };
