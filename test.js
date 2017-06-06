@@ -18,7 +18,7 @@ let payload = {
   "examName": "Jason Sandbox - Final Exam",
   "duration": 90,
   "startDate": "1496116800000",
-  "endDate": "1496894400000",
+  "endDate": "1497499200000",
   "schedulingBuffer": 30,
   "tzOffset": -4
 };
