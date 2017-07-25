@@ -20,7 +20,8 @@ let payload = {
   "startDate": "1502769600000",
   "endDate": "1508040000000",
   "schedulingBuffer": 30,
-  "tzOffset": -4
+  "tzOffset": -4,
+  "selection": true
 };
 console.time('Total Time:');
 client.getAvailableSlotMatrix(payload)
