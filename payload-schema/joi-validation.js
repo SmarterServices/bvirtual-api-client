@@ -430,7 +430,11 @@ const joiSchema = {
         .number()
         .options({convert: false})
         .required()
-        .description('Time zone offset in hours')
+        .description('Time zone offset in hours'),
+      selection: joi
+        .boolean()
+        .optional()
+        .description('Use slot selection logic or not')
     })
 
 };
