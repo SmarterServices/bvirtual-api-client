@@ -17,8 +17,8 @@ let payload = {
   "courseCode": "EXb33a65f3c2e34f0d98ad410944f3b8df",
   "examName": "Jason Sandbox - Final Exam",
   "duration": 90,
-  "startDate": "1496116800000",
-  "endDate": "1497499200000",
+  "startDate": "1502769600000",
+  "endDate": "1508040000000",
   "schedulingBuffer": 30,
   "tzOffset": -4
 };
