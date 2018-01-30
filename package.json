@@ -1,6 +1,6 @@
 {
   "name": "bvirtual-api-client",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This lib is used as a wrapper around api calls to B Virtual",
   "main": "index.js",
   "scripts": {
